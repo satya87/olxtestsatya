@@ -16,8 +16,8 @@ $accessToken=$faceBookObj->getAccessToken();
 if (!empty($accessToken)) {
     try {
         //get facebook likes
-        $session = $helper->getSessionFromRedirect();
-        $request = new FacebookRequest($session, 'GET', '/me');
+        //$session = $helper->getSessionFromRedirect();
+        //$request = new FacebookRequest($session, 'GET', '/me');
         //Todo save likes in db
     } catch (Exception $e) {
         echo $e;
