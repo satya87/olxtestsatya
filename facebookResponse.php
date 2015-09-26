@@ -4,9 +4,8 @@ include("include/config.php");
 
 $faceBookObj = new facebook(array(
                     'appId' => FACEBOOK_APP_ID,
-                    'secret' => $facebookSeckey,
+                    'secret' => FACEBOOK_SECRET_KEY,
                 ));
-
 
 $fbUser = $faceBookObj->getUser();
 $accessToken=$faceBookObj->getAccessToken();
