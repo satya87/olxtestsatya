@@ -1,4 +1,5 @@
 <?php
+
 include("facebook/facebook.php");
 include("include/config.php");
 
@@ -7,11 +8,19 @@ $faceBookObj = new facebook(array(
                     'secret' => FACEBOOK_SECRET_KEY,
                 ));
 
+
 $fbUser = $faceBookObj->getUser();
+
 $accessToken=$faceBookObj->getAccessToken();
 
 if (!empty($accessToken)) {
-    //get facebook likes
-   $likes = $faceBookObj->api('/'.$fbUser.'/likes');
-   //Todo save likes in db
+    try {
+        //get facebook likes
+        $session = $helper->getSessionFromRedirect();
+        $request = new FacebookRequest($session, 'GET', '/me');
+        //Todo save likes in db
+    } catch (Exception $e) {
+        echo $e;
+    }
 }
+
