@@ -2,22 +2,31 @@
 include("include/config.php");
 include('facebook/facebook.php');
 
-
 $faceBookObj = new facebook(array(
                     'appId' => FACEBOOK_APP_ID,
                     'secret' => FACEBOOK_SECRET_KEY,
                 ));
 
-$loginUrl = $faceBookObj->getLoginUrl(
+if (isset($_POST['Login'])) {
+    $hostname = "http://indfas.alice.com/";
+    
+    $loginUrl = $faceBookObj->getLoginUrl(
                 array(
-                    'redirect_uri' => "http://indfas.alice.com/facebookResponse.php",
-                    'cancel_uri'   => '',
-                    'scope'        => 'email,likes,first_name'
+                    'redirect_uri' => $hostname."facebookResponse.php",
+                    'cancel_uri'   => 'cancel.php',
+                    'scope'        => 'email'
                 )
             );
+    //redirect to facebook login page
 header('Location: ' . $loginUrl);
+}
 
 ?>
-<a id="fb-auth" href="login.php" class="d-inline"><span class="social-sprite fb-login d-block"></span></a>
-<div id="fb-root"></div>
-<div id="fbconnectfailed" class="s-error"></div>
+<div>
+<form action="login.php" method="post">
+Facebook login Page
+Click login button
+<input type="submit" name="Login" value="Login">
+</form>
+</div>
+
