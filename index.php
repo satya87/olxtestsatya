@@ -15,7 +15,7 @@ use Facebook\FacebookRedirectLoginHelper;
 
 FacebookSession::setDefaultApplication(FACEBOOK_APP_ID, FACEBOOK_SECRET_KEY);
 
-$helper = new FacebookRedirectLoginHelper('http://indfas.alice.com/login-callback.php');
+$helper = new FacebookRedirectLoginHelper(REDIRECT_URL);
 
 $loginUrl = $helper->getLoginUrl();
 echo '<a href="' . htmlspecialchars($loginUrl) . '">Log in with Facebook!</a>';

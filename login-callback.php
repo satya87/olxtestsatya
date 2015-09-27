@@ -11,7 +11,7 @@ use Facebook\FacebookRequestException;
 
 FacebookSession::setDefaultApplication(FACEBOOK_APP_ID, FACEBOOK_SECRET_KEY);
 
-$helper = new FacebookRedirectLoginHelper('http://indfas.alice.com/login-callback.php');
+$helper = new FacebookRedirectLoginHelper(REDIRECT_URL);
 try {
     $session = $helper->getSessionFromRedirect();
     $request = new FacebookRequest($session, 'GET', '/me');
@@ -38,6 +38,5 @@ try {
 if ($session) {
     
 }
-
 
 ?>
